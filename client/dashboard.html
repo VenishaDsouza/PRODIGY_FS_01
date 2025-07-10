@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Dashboard</h2>
+    <div id="userInfo">Loading user info...</div>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      async function loadProfile() {
+        try {
+          const res = await fetch("http://localhost:8000/profile", {
+            method: "GET",
+            credentials: "include"
+          });
+          const user = await res.json();
+
+          if (user && user.name) {
+            document.getElementById("userInfo").innerHTML = `
+              <p>Welcome, <strong>${user.name}</strong><br/>(${user.email})</p>
+            `;
+          } else {
+            window.location.href = "login.html";
+          }
+        } catch (err) {
+          document.getElementById("userInfo").textContent = "Failed to load user info.";
+          console.error(err);
+        }
+      }
+
+      async function logout() {
+        try {
+          await fetch("http://localhost:8000/logout", {
+            method: "POST",
+            credentials: "include"
+          });
+          window.location.href = "index.html";
+        } catch (err) {
+          console.error("Logout failed:", err);
+        }
+      }
+
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+      loadProfile();
+    });
+  </script>
+</body>
+</html>
