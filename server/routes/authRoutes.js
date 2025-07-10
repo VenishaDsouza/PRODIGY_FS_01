@@ -7,7 +7,7 @@ const { test, registerUser, loginUser,getProfile, logoutUser } = require('../con
 router.use(
     cors({
         credentials: true,
-        origin: 'http://127.0.0.1:5500' //change localhost number
+        origin: 'http://127.0.0.1:5500' 
     })
 )
 

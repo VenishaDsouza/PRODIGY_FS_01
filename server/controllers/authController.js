@@ -64,8 +64,8 @@ const loginUser = async (req, res) => {
                 if(err) throw err;
                 res.cookie('token', token, {
                     httpOnly: true,
-                    secure: true,          // Use true if deployed over HTTPS
-                    sameSite: 'none'         // Prevents CSRF across origins
+                    secure: true,          
+                    sameSite: 'none'         
                 }).json(user);
             })
         }
