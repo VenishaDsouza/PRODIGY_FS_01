@@ -12,7 +12,20 @@
     <button id="logoutBtn">Logout</button>
   </div>
 
+  <div id="toast" class="toast"></div>
+
   <script>
+
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
+
     document.addEventListener("DOMContentLoaded", () => {
       async function loadProfile() {
         try {
@@ -41,7 +54,10 @@
             method: "POST",
             credentials: "include"
           });
-          window.location.href = "index.html";
+          showToast("Logged out. Token deleted.");
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1500);
         } catch (err) {
           console.error("Logout failed:", err);
         }
@@ -50,6 +66,7 @@
       document.getElementById("logoutBtn").addEventListener("click", logout);
       loadProfile();
     });
+
   </script>
 </body>
 </html>

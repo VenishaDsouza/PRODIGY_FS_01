@@ -17,7 +17,19 @@
     <p>New here? <a href="register.html">Create an account</a></p>
   </div>
 
+<div id="toast" class="toast"></div>
+
   <script>
+
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -35,9 +47,13 @@
       if (result.error) {
         document.getElementById("errorMsg").textContent = result.error;
       } else {
-        window.location.href = "dashboard.html";
+        showToast("Login successful!");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1500);
       }
     });
+
   </script>
 </body>
 </html>

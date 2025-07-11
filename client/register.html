@@ -18,7 +18,20 @@
     <p>Already registered? <a href="login.html">Log in here</a></p>
   </div>
 
+  <div id="toast" class="toast"></div>
+
   <script>
+
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
+
     document.getElementById("registerForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -36,9 +49,13 @@
       if (result.error) {
         document.getElementById("errorMsg").textContent = result.error;
       } else {
-        window.location.href = "login.html";
+        showToast("Registered successfully!");
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1500);
       }
     });
+
   </script>
 </body>
 </html>
