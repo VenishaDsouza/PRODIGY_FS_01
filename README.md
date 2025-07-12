@@ -1,4 +1,3 @@
-# PRODIGY_FS_01
 # Secure User Authentication System
 
 A full-stack web authentication project built with Node.js, Express, MongoDB, and JWT. It features secure session handling using cookies, dynamic frontend rendering, and toast-based user feedback for clean UX.
@@ -33,17 +32,22 @@ A full-stack web authentication project built with Node.js, Express, MongoDB, an
 ### 1. Clone this repository  
 ```bash
 git clone https://github.com/VenishaDsouza/PRODIGY_FS_01
+```
 
 ### 2. Install Backend Dependencies
+```bash
 cd server
 npm install
+```
 
-### 3. Set up Environmental Variables
-- Create a .env file inside server/ with:
-MONGODB_URI=your-mongo-db-url
-JWT_SECRET=your-secret-key
+### 3. Set up Environmental Variables 
+Create a .env file inside server/ with: 
+```bash
+MONGODB_URI=your-mongo-db-url 
+JWT_SECRET=your-secret-key 
+```
 
 ### 4. Run Your Backend Server 
+```bash
 npm start
-
-
+```
